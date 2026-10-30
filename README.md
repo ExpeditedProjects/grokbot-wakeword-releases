@@ -2,7 +2,7 @@
 
 Say "hey research" and Grok Wake starts a voice chat with your Research bot in Grok Bot. It sits in the menu bar, listens for the phrases you set (one per bot), and when it hears one it opens that bot and presses its "Start voice chat" button for you.
 
-Speech recognition runs on your Mac. No audio or text goes over the network, and Grok Wake stops listening while a call is going.
+Speech recognition runs on your Mac. No audio or text goes over the network, and Grok Wake stops listening while a call is going. See [Is Grok listening to everything I say?](#is-grok-listening-to-everything-i-say)
 
 ## Requirements
 
@@ -55,13 +55,29 @@ Bot names that speech recognition spells oddly (made-up words, brackets, initial
 | Phone | A call is starting or in progress (not listening) |
 | Warning | Something needs attention; open the menu to see what |
 
-## Privacy
+## Is Grok listening to everything I say?
 
-- Recognition is on-device only. Grok Wake requires it and never falls back to Apple's servers. If on-device recognition isn't available, it shows an error instead of listening.
-- Grok Wake makes no network connections. It reads your bot list from Grok Bot's files on your Mac.
-- What it hears is kept only long enough to check for a phrase. Recognition restarts about every 50 seconds and after every wake, which discards the old text. Nothing is saved to disk.
-- While a call is starting or live, Grok Wake turns the microphone off completely, so it can't hear your conversation. macOS's orange microphone dot then belongs to Grok Bot alone, and Bluetooth headsets go back to high-quality audio after the call. This includes calls you start yourself in Grok Bot.
-- When Listening is on, macOS shows the orange microphone dot in the menu bar. That's expected: Grok Wake has to hear you to catch the phrase.
+No. Grok hears nothing until you say a wake phrase and a voice chat starts. Until then, the only things listening are Grok Wake and Apple's speech recognition, and both run entirely on your Mac.
+
+Grok Wake itself does hear everything said near your Mac while Listening is on; it has to, to catch your phrase. That's why macOS shows its orange microphone dot. But what it hears stays on your Mac, in memory only, and is replaced as you keep talking.
+
+### How it works
+
+1. **Your Mac turns speech into text.** Grok Wake passes the microphone's audio to macOS's built-in speech recognizer, the one Dictation uses, and requires it to run on your Mac. If your Mac could only do it through Apple's servers, Grok Wake shows an error and doesn't listen.
+2. **Grok Wake looks for your phrases in that text.** As the text comes in, it checks for one of your enabled phrases as whole words. Everything else is ignored.
+3. **The text is discarded regularly.** Recognition restarts about every 50 seconds and after every wake, which drops what came before. The latest text is kept in memory only, for the Heard line in Settings. Nothing is recorded, saved to disk or logged.
+4. **A phrase starts an ordinary Grok Bot voice chat.** Grok Wake opens that bot in Grok Bot and presses Start voice chat, just as you would. From that moment you're on a normal Grok Bot call, and your voice goes to Grok the same as any call you start yourself.
+5. **Grok Wake turns its microphone off for the call.** It stops listening while the call starts and runs, so it can't hear the conversation, and starts again after you hang up. It does this for calls you start yourself in Grok Bot too. The orange dot then belongs to Grok Bot alone, and Bluetooth headsets go back to high-quality audio after the call.
+
+If Grok Wake mishears something as your phrase, that starts a real call. Hang up in Grok Bot. A phrase that's unlikely to come up in conversation makes this rarer.
+
+### What Grok Wake never does
+
+- Connect to the internet. It reads your bot list from Grok Bot's files on your Mac.
+- Send audio or text to Grok, Apple or anyone else.
+- Record audio or keep a transcript.
+
+To stop it listening, turn **Listening** off in the menu (the icon changes to Pause) or quit Grok Wake.
 
 ## Troubleshooting
 
