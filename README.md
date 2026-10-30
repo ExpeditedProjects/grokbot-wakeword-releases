@@ -40,6 +40,8 @@ Open **Settings…** from the menu to see your bots. Each one has:
 - a checkbox to turn its phrase on or off (all are on at first), and
 - a phrase, which starts as "hey" plus the bot's name ("hey research" for Research). Type a new one to change it; clear the field to go back to the default.
 
+![The Settings window: each bot with a checkbox and its phrase, the microphone menu, and the Listening and Heard lines](images/settings.png)
+
 Matching ignores case and punctuation and works on whole words, so "Hey, Research!" wakes Research but "hey researcher" doesn't. The phrase can come anywhere in what you say ("uh, hey research, what's up"). When the phrase is the last thing you said, Grok Wake waits about half a second to be sure you weren't in the middle of a longer word.
 
 If two bots have the same phrase, Settings marks them with a warning and the one higher in the list wins. If one phrase starts another ("hey crux" and "hey crux two"), the longer one wins when you say it.
